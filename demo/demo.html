@@ -15,11 +15,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
 
-    <link rel="import" href="icon-transition.html">
-    <link rel="import" href="bower_components/paper-toolbar/paper-toolbar.html">
-    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="../icon-transition.html">
+    <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
 
     <style>
         html, body {
@@ -101,25 +101,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
     </template>
     <script>
-        Polymer({
-            is: 'icon-demo',
-            properties: {
-                icon: {
-                    type: String,
-                    value: 'add'
-                }
-            },
+        class IconDemo extends Polymer.Element {
+            static get is() { return "icon-demo"; }
 
-            pickIcon: function (e) {
+            static get properties() {
+                return {
+                    icon: {
+                        type: String,
+                        value: 'add'
+                    }
+                }
+            }
+
+            pickIcon(e) {
                 this.icon = e.currentTarget.icon;
-            },
-            triggerTransition: function (e) {
+            }
+
+            triggerTransition(e) {
                 var icon = e.currentTarget.attributes['data-icon'].value;
                 if (!!icon) {
                     this.icon = icon;
                 }
             }
-        });
+        }
+
+        window.customElements.define(IconDemo.is, IconDemo);
     </script>
 </dom-module>
 <icon-demo></icon-demo>
