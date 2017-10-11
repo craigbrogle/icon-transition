@@ -101,25 +101,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
     </template>
     <script>
-        Polymer({
-            is: 'icon-demo',
-            properties: {
-                icon: {
-                    type: String,
-                    value: 'add'
-                }
-            },
+        class IconDemo extends Polymer.Element {
+            static get is() { return "icon-demo"; }
 
-            pickIcon: function (e) {
+            static get properties() {
+                return {
+                    icon: {
+                        type: String,
+                        value: 'add'
+                    }
+                }
+            }
+
+            pickIcon(e) {
                 this.icon = e.currentTarget.icon;
-            },
-            triggerTransition: function (e) {
+            }
+
+            triggerTransition(e) {
                 var icon = e.currentTarget.attributes['data-icon'].value;
                 if (!!icon) {
                     this.icon = icon;
                 }
             }
-        });
+        }
+
+        window.customElements.define(IconDemo.is, IconDemo);
     </script>
 </dom-module>
 <icon-demo></icon-demo>

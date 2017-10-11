@@ -46,23 +46,28 @@ In the above example, we have two `<icon-transition>` icons whose transitions ar
         </svg>
     </template>
     <script>
-        Polymer({
-            is: 'icon-transition',
+        class IconTransition extends Polymer.Element {
+            static get is() { return "icon-transition"; }
 
-            properties: {
-                /** Specify the stroke color of the current SVG icon */
-                _rotate: 0,
-                color: {
-                    type: String,
-                    value: '#000'
-                },
-                icon: {
-                    type: String,
-                    observer: 'iconChanged'
+            static get properties() {
+                return {
+                    _rotate: {
+                        type: Number,
+                        value: 0
+                    },
+                    /* Specify the stroke color of the current SVG icon */
+                    color: {
+                        type: String,
+                        value: '#000'
+                    },
+                    icon: {
+                        type: String,
+                        observer: 'iconChanged'
+                    }
                 }
-            },
+            }
 
-            iconChanged: function() {
+            iconChanged() {
                 this._rotate += 180;
 
                 var cl = this.icon;
@@ -79,6 +84,8 @@ In the above example, we have two `<icon-transition>` icons whose transitions ar
                     svg.style.webkitTransform = transform;
                 }
             }
-        });
+        }
+
+        window.customElements.define(IconTransition.is, IconTransition);
     </script>
 </dom-module>
